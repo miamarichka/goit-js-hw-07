@@ -18,12 +18,12 @@
 
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-import * as basicLightbox from 'basiclightbox'
+// import * as basicLightbox from 'basiclightbox'
 const gallery = document.querySelector('.gallery');
-let modalWindow
 
-function createGalleryItems(){
-    return gallery.innerHTML = galleryItems.map(({preview, original, description})=>
+
+function createGalleryItems(newGalleryItems){
+    return newGalleryItems.map(({preview, original, description})=>
     `<a class="gallery__link" href= ${original}>
     <img
     class="gallery__image"
@@ -33,7 +33,8 @@ function createGalleryItems(){
   />
   </a>`).join('');
 }
-createGalleryItems(galleryItems);
+gallery.innerHTML  = createGalleryItems(galleryItems);
+
 
 gallery.addEventListener('click', onPictureClick)
 
@@ -44,17 +45,19 @@ function onPictureClick(event){
     }
 
 const originalImage = event.target.dataset.source;
- modalWindow.basicLightbox.create(`<img src=${originalImage} width="800" height="600">`,
-{ showUp:()=>window.addEventListener('keydown', closeModalonEsc),
-  hide:()=>window.removeEventListener('keydown', closeModalonEsc)}
-  );
+const instance = basicLightbox.create(`<img src=${originalImage} width="800" height="600">`);
 
-  modalWindow.show();
-}
+instance.show();
+
+gallery.addEventListener('keydown', closeModalonEsc)
+
 function closeModalonEsc(event){
  if(event.code ==='Escape'){
-    modalWindow.close()
+    instance.close()
+   }
  }
 }
+
+
 
 console.log(gallery)
