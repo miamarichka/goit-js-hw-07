@@ -18,8 +18,8 @@ function createGalleryItems(newGalleryItems){
     `<a class="gallery__item" href= ${original}>
     <img
     class="gallery__image"
-    src=${preview}
-    alt=${description}
+    src="${preview}"
+    alt="${description}"
   />
   </a>`).join('');
 }
@@ -28,6 +28,6 @@ gallery.innerHTML  = createGalleryItems(galleryItems);
 var lightbox = new SimpleLightbox('.gallery a' , {
     captionsClass: 'gallery__image',
     captionsData: 'alt',
-    captionsDelay: '250'
+    captionDelay: '250'
 });
 console.log(lightbox)
