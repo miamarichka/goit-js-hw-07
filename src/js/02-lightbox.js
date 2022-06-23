@@ -26,8 +26,8 @@ function createGalleryItems(newGalleryItems){
 gallery.innerHTML  = createGalleryItems(galleryItems);
 
 var lightbox = new SimpleLightbox('.gallery a' , {
-    captionClass: 'gallery__image',
-    captionData: 'alt',
-    captionDelay: '250'
+    captionsClass: 'gallery__image',
+    captionsData: 'alt',
+    captionsDelay: '250'
 });
 console.log(lightbox)
